@@ -8,14 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var nameTextField: String = ""
+    @State var userName: String = ""
+    @State var password: String = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                TextField(LocalizedStringKey("Name"), text: $nameTextField)
+                    .padding()
+                    .textFieldStyle(.roundedBorder)
+                
+                TextField(LocalizedStringKey ("UserName"), text: $userName)
+                    .padding()
+                    .textFieldStyle(.roundedBorder)
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .textFieldStyle(.roundedBorder)
+                
+                
+            }
+            .navigationTitle("Login")
+            .toolbar {
+                Button("Login") {
+                    
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(nameTextField.count == 0)
+            }
         }
-        .padding()
+            
     }
 }
 
