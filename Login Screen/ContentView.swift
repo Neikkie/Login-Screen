@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var nameTextField: String = ""
     @State var userName: String = ""
     @State var password: String = ""
+    @State var goToForgotPasswordScreen: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -33,8 +34,15 @@ struct ContentView: View {
                     .padding()
                     .textFieldStyle(.roundedBorder)
                 
+                Button("Forgot Password") {
+                    goToForgotPasswordScreen = true
+                }
+                .buttonStyle(.plain)
                 
             }
+            .navigationDestination(isPresented: $goToForgotPasswordScreen, destination: {
+                Text("Different Screen")
+            })
             .navigationTitle("Login")
             .toolbar {
                 Button("Login") {
