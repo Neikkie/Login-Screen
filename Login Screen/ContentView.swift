@@ -9,10 +9,8 @@ import SwiftUI
 import Lottie
 
 struct ContentView: View {
-    @State var nameTextField: String = ""
-    @State var userName: String = ""
-    @State var password: String = ""
-    @State var goToForgotPasswordScreen: Bool = false
+
+   @StateObject var loginViewModel: LoginViewModel
     
     var body: some View {
         NavigationStack {
@@ -22,26 +20,26 @@ struct ContentView: View {
                 LottieView(animation: .named("Welcome Animation"))
                     .playing()
                 
-                TextField(LocalizedStringKey("Name"), text: $nameTextField)
+                TextField(LocalizedStringKey("Name"), text: $loginViewModel.nameTextField)
                     .padding()
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.asciiCapable)
                 
-                TextField(LocalizedStringKey ("UserName"), text: $userName)
+                TextField(LocalizedStringKey ("UserName"), text: $loginViewModel.userName)
                     .padding()
                     .textFieldStyle(.roundedBorder)
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $loginViewModel.password)
                     .padding()
                     .textFieldStyle(.roundedBorder)
                 
                 Button("Forgot Password") {
-                    goToForgotPasswordScreen = true
+                    loginViewModel.goToForgotPasswordScreen = true
                 }
                 .buttonStyle(.plain)
                 
             }
-            .navigationDestination(isPresented: $goToForgotPasswordScreen, destination: {
+            .navigationDestination(isPresented: $loginViewModel.goToForgotPasswordScreen, destination: {
                 ForgotPasswordScreen()
             })
             .navigationTitle("Login")
@@ -50,7 +48,7 @@ struct ContentView: View {
                     
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(nameTextField.count == 0)
+                .disabled(loginViewModel.nameTextField.count == 0)
             }
         }
             
@@ -58,5 +56,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(loginViewModel: LoginViewModel())
 }
