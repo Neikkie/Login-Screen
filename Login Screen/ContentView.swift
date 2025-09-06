@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct ContentView: View {
     @State var nameTextField: String = ""
@@ -15,6 +16,11 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                
+                // adding animation
+                LottieView(animation: .named("Welcome Animation"))
+                    .playing()
+                
                 TextField(LocalizedStringKey("Name"), text: $nameTextField)
                     .padding()
                     .textFieldStyle(.roundedBorder)
