@@ -25,6 +25,7 @@ struct ContentView: View {
                 TextField(LocalizedStringKey("Name"), text: $nameTextField)
                     .padding()
                     .textFieldStyle(.roundedBorder)
+                    .keyboardType(.asciiCapable)
                 
                 TextField(LocalizedStringKey ("UserName"), text: $userName)
                     .padding()
@@ -41,7 +42,7 @@ struct ContentView: View {
                 
             }
             .navigationDestination(isPresented: $goToForgotPasswordScreen, destination: {
-                Text("Different Screen")
+                ForgotPasswordScreen()
             })
             .navigationTitle("Login")
             .toolbar {
