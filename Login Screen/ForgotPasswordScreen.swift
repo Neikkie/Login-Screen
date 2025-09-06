@@ -16,24 +16,17 @@ struct ForgotPasswordScreen: View {
                 
                     Text("Enter your email address")
                    
-                
-            
                 TextField(LocalizedStringKey("Email"), text: $email)
                     .textFieldStyle(.roundedBorder)
                     .textContentType(.emailAddress)
                 
                 Spacer()
                     
-                
             }
             .navigationTitle("Forgot Password ")
             .padding()
-                
         }
-        
     }
-        
-    
 }
 #Preview{
     ForgotPasswordScreen()
